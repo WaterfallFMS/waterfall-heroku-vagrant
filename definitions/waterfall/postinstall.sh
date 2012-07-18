@@ -69,8 +69,14 @@ chmod 600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant /home/vagrant/.ssh
 
 # Remove items used for building, since they aren't needed anymore
-apt-get -y remove linux-headers-$(uname -r) build-essential
-apt-get -y autoremove
+apt-get -y git curl sqlite3 libsqlite3-dev zlib1g zlib1g-dev
+apt-get -y imagemagick libmagickcore-dev libmagickwand-dev
+apt-get -y postgresql-9.1 postgresql-server-dev-9.1
+apt-get -y mysql mysql-server libmysqld-dev
+apt-get -y openssl libssl-dev sphinxsearch g++
+apt-get -y libxml2-dev libxslt-dev libcurl4-openssl-dev
+apt-get -y libqt4-dev libqtwebkit-dev
+apt-get clean
 
 # Zero out the free space to save space in the final image:
 dd if=/dev/zero of=/EMPTY bs=1M
