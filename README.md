@@ -3,6 +3,30 @@ Introduction
 
 This is an attempt to easy create a vagrant box that behaves like the Heroku stack that Waterfall normally runs on.
 
+Usages
+------
+You have two options.  Use the product from a vagrant file or init vagrant yourself.
+
+Init
+====
+```sh
+$ vagrant init waterfall
+$ vagrant up
+$ vagrant ssh
+```
+
+Via Vagrant file
+================
+Add the following to your `Vagrantfile`.
+
+```ruby
+Vagrant::Config.run do |config|
+  config.vm.box     = "waterfall"
+  config.vm.box_url = "http://<url to waterfall>.box"
+end
+```
+
+
 Developer Notes
 ---------------
 
@@ -17,6 +41,16 @@ Edit the `definitions/waterfall` files.
 
 ```sh
 $ veewee vbox build 'waterfall'
+$ veewee vbox validate 'waterfall'
+$ vagrant basebox export 'waterfall'
+```
+
+Now there is a waterfall.box file in your local machine.  You can use it as is or transfer it for other to use.
+
+To use it personally
+
+```sh
+$ vagrant box add 'waterfall' 'waterfall.box'
 ```
 
 References
